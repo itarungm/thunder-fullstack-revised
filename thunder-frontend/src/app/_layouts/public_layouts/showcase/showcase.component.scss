@@ -1,0 +1,187 @@
+
+
+.content {
+    margin: 0;
+    padding: 0;
+    font-family: helvetica;
+    height: 100vh;
+    width: 100%;
+    background-image: url(https://images.unsplash.com/photo-1471921152622-ee4bff0a0238?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+  }
+  
+  .tbar {
+    color: white;
+    font-size: 12px;
+    display: flex;
+    padding: 5px;
+    justify-content: flex-end;
+    place-items: center;
+  }
+  
+  .tbar > i, .tbar > .time{
+    padding-right: 8px;
+  }
+  
+  .percent {
+    padding-right: 5px;
+  }
+  
+  .content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .pic {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-image: url(https://images.unsplash.com/photo-1486578077620-8a022ddd481f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: grey;
+  }
+  
+  /* had to do this to center name "Andrew" */
+  .wrap {
+    display: flex;
+    font-weight: lighter;
+    font-size: 18px;
+  }
+  
+  .name {
+    margin: 20px auto;
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  #password {
+    font-size: 17px;
+    color: white;
+    background-color: hsla(0, 0%, 45%, 90%);
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    padding: 0 5px;
+  
+  }
+  
+  #password::placeholder {
+    font-size: 14px;
+    vertical-align: center;
+    color: rgb(170,170,170);
+  }
+   
+  input:focus {
+    outline: none;
+  }
+  
+  .arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(170,170,170);
+    border: 1px solid white;
+    color: rgba(0,0,0,.7);
+    padding: 3px;
+    margin-left: 5px;
+    margin-right: -35px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    border: none;
+    background-color: hsla(0, 0%, 75%, 90%);
+  }
+  
+  .x {
+    width: 35px;
+    height: 35px;
+    background-color: hsla(0, 0%, 45%, 90%);
+    color: white;
+    font-size: 15px;
+    border-radius: 100%;
+    margin: 10px auto;
+  }
+  
+  .cancel-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 140px;
+  }
+  
+  .shake{
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.3s;
+  
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes shake {
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+
+
+  
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+    color: black;
+    text-align: center;
+    
+}
+
+.page_404  img{ width:100hw;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}

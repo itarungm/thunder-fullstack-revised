@@ -1,0 +1,50 @@
+<section>
+    <ngx-dropzone *ngIf="!fileSelected" class="custom-dropzone mb-3" (change)="onSelect($event)" [multiple]="false" accept="image/jpeg,image/jpg,image/png,image/gif,.pdf,.xlsx,.xlx,.doc,.docx,.txt">
+        <ngx-dropzone-label><i class="ti-file btn-icon-prepend"></i> Drag or Browse your Thunder file</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of dropzoneFiles" [removable]="true">
+            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+    </ngx-dropzone>
+
+    <ng-container *ngIf="fileSelected">
+      <div class="card p-2 mb-3">
+        <div class="row container-fluid">
+          <div class="col-lg-3 p-2 border d-flex justify-content-center align-items-center">
+            <div class="file-preview d-flex justify-content-center align-items-center">
+              <img class="" [src]="filePreviewUrl" alt="">
+            </div>
+          </div>
+          <div class="col-lg-7 p-5">
+            <div>
+            <h3 class="mt-5">{{fileName}}</h3>
+              <div class="mt-10">
+
+              <button type="button" class="btn btn-outline-danger btn-icon-text mr-2" (click)="onRemove()">
+                <i class="ti-close btn-icon-prepend"></i>                                                    
+                Cancel
+              </button>
+              <button type="button" class="btn btn-danger btn-icon-text" (click)="onUpload()">
+                <i class="ti-upload btn-icon-prepend"></i>                                                    
+                Upload
+              </button>
+            </div>
+
+            </div>
+          </div>
+        </div>
+          
+      </div>
+    </ng-container>
+
+</section>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Thunder Board</h4>
+          <thunder-grid [gridData]="files" [loader]="filesLoader" [gridHeaders]="gridHeaders" (action)="onAction($event)"></thunder-grid>
+        </div>
+      </div>
+    </div>
+  </div>

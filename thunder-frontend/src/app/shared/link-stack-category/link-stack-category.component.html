@@ -1,0 +1,74 @@
+<div class="example-action-buttons d-flex justify-content-end mt-2 cursor-pointer" *ngIf="categories">
+    <mat-icon class="mr-2" *ngIf="rootId"  #tooltip="matTooltip"
+    matTooltip="Setting"><i (click)="openSettingPanel()" class="ti-settings"></i></mat-icon>
+    <mat-icon *ngIf="!isAllExpanded"  #tooltip="matTooltip"
+    matTooltip="Expand All"><i (click)="accordion.openAll();isAllExpanded=true" class="ti-arrow-circle-down"></i></mat-icon>
+    <mat-icon *ngIf="isAllExpanded"  #tooltip="matTooltip"
+    matTooltip="Collapse All"><i (click)="accordion.closeAll();isAllExpanded=false" class="ti-arrow-circle-up"></i></mat-icon>
+</div>
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel *ngFor="let category of categories; let i=index">
+        <mat-expansion-panel-header (mouseenter)="onHeaderMouseEnterLeave(true, i)" (mouseleave)="onHeaderMouseEnterLeave(false, i)">
+            <mat-panel-title>
+                <span *ngIf="!category.isEdit"><strong>{{category.categoryName}}</strong></span> 
+                <div *ngIf="category.isEdit" (click)="$event.stopPropagation()" class="d-flex">
+                    <input class="form-control" type="text" (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation();onUpdateCategoryName(category._id, updateText.value)" (keydown.Space)="$event.stopImmediatePropagation()" (input)="$event.stopPropagation()" [value]="category.categoryName" #updateText> 
+                    <button class="p-0" mat-button (click)="onUpdateCategoryName(category._id, updateText.value)"><mat-icon>done</mat-icon></button>
+                    <button  class="p-0" mat-button (click)="$event.stopPropagation();closeCategoryUpdate(i)"><mat-icon>close</mat-icon></button>
+                </div>
+            </mat-panel-title>
+            <mat-panel-description>
+
+                {{category.subcategory.length+' Link'+(category.subcategory.length>1?'s ':' ')+'Present'}}
+
+
+                <div class="d-flex justify-content-end" *ngIf="category.showActions">
+                    <mat-icon class="m-2" #tooltip="matTooltip"
+                    matTooltip="Add Link" (click)="onLinkAdd($event, category)">add_circle</mat-icon>
+                    <mat-icon *ngIf="!category.isEdit" class="m-2" (click)="onCategoryEdit($event, i, category)" #tooltip="matTooltip"
+                    matTooltip="Update Category Name">edit</mat-icon>
+                    <mat-icon class="m-2" #tooltip="matTooltip"
+                    matTooltip="Delete Category" (click)="$event.stopPropagation();deleteConfirmationDialog(category)">delete</mat-icon>
+                </div>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let link of category.subcategory">
+                <ng-template carouselSlide [id]="link._id">
+                    <mat-card class="example-card mr-2">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image">
+                                <img mat-card-image [src]="link.iconUrl"  (error)="onImgError($event, link.hostUrl)" >
+                            </div>
+                            <mat-card-title  #tooltip="matTooltip"
+                            [matTooltip]="link.title">{{link.title}}</mat-card-title>
+                            <mat-card-subtitle>{{link?.hostUrl}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                        <mat-card-content [style.overflow]="'auto'" [style.height.px]="'90'">
+                            <a [href]="link.link" target="_blank">
+                                <p style="word-wrap:break-word;">{{link.link}}</p>
+                            </a>
+                        </mat-card-content>
+                        <mat-card-actions class="d-flex justify-content-around">
+                            <button mat-button class="copy-btn"><mat-icon (click)="onCopyLink(link.link)"><i class="ti-layers"></i></mat-icon></button>
+                            <button mat-button><mat-icon (click)="onEditLink(category._id,link)"><i class="ti-pencil"></i></mat-icon></button>
+                            <button mat-button><mat-icon (click)="deleteConfirmationDialog(category,link)"><i class="ti-trash"></i></mat-icon></button>
+                        </mat-card-actions>
+                    </mat-card>
+                </ng-template>
+            </ng-container>
+
+        </owl-carousel-o>
+        <div *ngIf="category.subcategory.length==0" class="text-center" >
+            No Links. <span class="text-blue cursor-pointer" (click)="onLinkAdd($event, category)"><mat-icon>add_circle</mat-icon> Add Some Links.</span>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="d-flex justify-content-center mt-5" *ngIf="!categories">
+    No Links are Added yet.
+</div>
+

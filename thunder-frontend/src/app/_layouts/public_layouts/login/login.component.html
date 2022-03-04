@@ -1,0 +1,127 @@
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo text-center">
+                <img src="../../../assets/thunder-logo.png" alt="logo" height="52px">
+              </div>
+              <ng-container *ngIf="!signUpPanel">
+                <h4>Hello! let's get started</h4>
+                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <form class="pt-3" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                  <div class="form-group">
+                    <input formControlTrimmer formControlName="username" type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                    <mat-error *ngIf="loginForm.controls['username'].errors?.required && loginForm.controls['username'].touched">Username is required</mat-error>
+                  </div>
+                  <div class="form-group">
+                    <input  formControlName="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    <mat-error *ngIf="loginForm.controls['password'].errors?.required && loginForm.controls['password'].touched">Password is required</mat-error>
+                  </div>
+                  <div class="mt-3">
+                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
+                  </div>
+                  <div class="my-2 d-flex justify-content-between align-items-center">
+                    <div class="form-check form-check-primary">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" [checked]="isRememberMeChecked" (change)="onRememberMe($event)">
+                        Keep me signed in
+                      </label>
+                    </div>
+                    <a routerLink="/forgot-password" class="auth-link text-black">Forgot password?</a>
+                  </div>
+                  <!-- <div class="mb-2">
+                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                      <i class="ti-facebook mr-2"></i>Connect using facebook
+                    </button>
+                  </div> -->
+                  <div class="text-center mt-4 font-weight-light">
+                    Don't have an account? <a routerLink="/signup"  class="text-primary cursor-pointer">Create</a>
+                  </div>
+                </form>
+              </ng-container>
+              <ng-container *ngIf="signUpPanel">
+                <h4>New here?</h4>
+                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <form class="pt-3" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                  <div class="form-group input-spinner">
+                    <input formControlTrimmer formControlName="username" type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+                    <div class="mat-spinner-outer" *ngIf="usernameCheckingLoader">
+                        <mat-spinner [diameter]="25"></mat-spinner>
+                    </div>
+                    <mat-error *ngIf="signUpForm.controls['username'].errors?.required && signUpForm.controls['username'].touched">Username is required</mat-error>
+                    <mat-error *ngIf="!isUsernameAvailable">Username is not available.</mat-error>
+                  </div>
+                  <div class="form-group">
+                    <input formControlTrimmer formControlName="name" type="name" class="form-control form-control-lg" id="exampleInputName" placeholder="Name">
+                    <mat-error *ngIf="signUpForm.controls['name'].errors?.required  && signUpForm.controls['name'].touched">Name is required</mat-error>
+                  </div>
+                  <div class="form-group">
+                    <input formControlTrimmer formControlName="email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                    <mat-error *ngIf="signUpForm.controls['email'].errors?.required && signUpForm.controls['email'].touched">Email is required</mat-error>
+                  </div>
+                  <div class="form-group">
+                    <input formControlName="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    <mat-error *ngIf="signUpForm.controls['password'].errors?.required && signUpForm.controls['password'].touched">Password is required</mat-error>
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-check">
+                      <label class="form-check-label text-muted">
+                        <input formControlName="terms" type="checkbox" class="form-check-input">
+                        <span [ngClass]="(!signUpForm.controls['terms'].value && signUpForm.controls['terms'].touched)?'text-reddit':''"> I agree to all Terms & Conditions</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN UP</button>
+                  </div>
+                  <div class="text-center mt-4 font-weight-light">
+                    Already have an account? <a routerLink="/login" class="text-primary cursor-pointer">Login</a>
+                  </div>
+                </form>
+              </ng-container>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+<!-- <section>
+    <div class="container" id="container" [ngClass]="signUpPanel?'right-panel-active':''">
+        <div class="form-container sign-up-container">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                <h1 class="pt-15"> Create Account</h1>
+                <input type="text" name="username" placeholder="Username" autocomplete="username" formControlName="username">
+                <input type="text" name="name" placeholder="Name" autocomplete="name" formControlName="name">
+                <input type="email" name="email" placeholder="Email" autocomplete="email" formControlName="email">
+                <input type="password" name="password" placeholder="Password" autocomplete="new-password" formControlName="password">
+                <button class="creat-account-btn cursor-pointer" type="submit"> Create Account</button>
+                <h5>Already have an account! <a class="ghost text-blue" id="signIn" (click)="activeSignInPanel()"><u>Sign In</u></a></h5>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <h1 class="pt-15"> Login</h1>
+                <input type="text" name="email" placeholder="Email" autocomplete="email" formControlName="email">
+                <input type="password" name="password" placeholder="Password" autocomplete="new-password" formControlName="password">
+                <a href="#" class="forgot-password"> Forgot Your Password?</a>
+                <button class="login-btn cursor-pointer" type="submit"> Let Me In...</button>
+                <h5>New to here! <a class="ghost" id="signUp text-blue" (click)="activeSignUpPanel()"><u>Sign Up</u></a></h5>
+            </form>  
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <img src="https://www.nacionrex.com/__export/1570213049857/sites/debate/img/2019/10/04/joker_estreno_fbi_vigilancia_redes_sociales_espionaje_2019_crop1570212801819.jpg_423682103.jpg" alt="movie-1" height="480" width="500"/>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <img src="https://i.pinimg.com/originals/b8/e1/b6/b8e1b67a3f203dac4bc4602339e534a3.jpg" alt="movie-2" height="480" width="500"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

@@ -1,0 +1,109 @@
+<mat-card [ngClass]="failedToFetchSettings?'disabled':''">
+  <div class="d-flex justify-content-between">
+    <div>
+      <mat-card-title><i class="ti-settings"></i> Link Setting</mat-card-title>
+    </div>
+    <div>
+      <mat-icon class="cursor-pointer" mat-dialog-close>close</mat-icon>
+    </div>
+  </div>
+  <mat-card-content>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div>Title</div>
+          </td>
+          <td>
+            <div>
+              <mat-slide-toggle (change)="(!settings.isTitleAvailable)?updateSetting():''" [checked]="settings?.isTitleAvailable" [(ngModel)]="settings.isTitleAvailable"
+                ></mat-slide-toggle>
+            </div>
+          </td>
+          <td>
+
+            <div [ngClass]="(settings?.isTitleAvailable)?'':'disabled'" class="d-flex justify-content-center">
+              <div>
+                <input type="text" [(ngModel)]="settings.title" class="form-control" id="linkTitle"
+                  aria-describedby="title link" placeholder="Title">
+              </div>
+              <div class="cursor-pointer">
+                <button #tooltip="matTooltip" matTooltip="Reset Title" mat-button (click)="settings.title=''">
+                  <mat-icon><i class="ti-close"></i></mat-icon>
+                </button>
+                <button (click)="updateSetting()" #tooltip="matTooltip" class="p-0 m-0" matTooltip="Save Link"
+                  mat-button>
+                  <mat-icon><i class="ti-save"></i></mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div>Share</div>
+          </td>
+          <td>
+            <div>
+              <mat-slide-toggle [checked]="settings?.isShareable" [(ngModel)]="settings.isShareable"
+                (change)="updateSetting()"></mat-slide-toggle>
+            </div>
+          </td>
+          <td>
+
+            <div [ngClass]="(settings?.isShareable)?'':'disabled'" class="d-flex justify-content-center">
+              <div>
+                <input type="text" [(ngModel)]="settings.shareLink" class="form-control" id="sharableLink"
+                  aria-describedby="shareable link" placeholder="link">
+              </div>
+              <div class="cursor-pointer">
+                <button #tooltip="matTooltip" matTooltip="Copy Link" mat-button (click)="copyLink()">
+                  <mat-icon><i class="ti-layers-alt"></i></mat-icon>
+                </button>
+                <button (click)="navigateToUrl()" #tooltip="matTooltip" class="p-0 m-0" matTooltip="Navigate to Link"
+                  mat-button>
+                  <mat-icon><i class="ti-new-window"></i></mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>Password Protection</div>
+          </td>
+          <td>
+            <mat-slide-toggle (change)="(!settings.isPasswordProtected)?updateSetting():''"
+              [checked]="settings?.isPasswordProtected" [(ngModel)]="settings.isPasswordProtected"></mat-slide-toggle>
+          </td>
+          <td>
+            <div [ngClass]="(settings?.isPasswordProtected)?'':'disabled'" class="d-flex justify-content-center">
+              <div>
+                <input [type]="(!toggleShowPassword)?'password':'text'" [(ngModel)]="settings.password"
+                  class="form-control" id="password" aria-describedby="password" placeholder="Password">
+              </div>
+              <div class="cursor-pointer">
+                <button #tooltip="matTooltip" class="p-0 m-0" matTooltip="Show Password" mat-button
+                  (click)="toggleShowPassword=!toggleShowPassword">
+                  <mat-icon><i class="ti-eye"></i></mat-icon>
+                </button>
+                <button #tooltip="matTooltip" class="p-0 m-0" matTooltip="Save Password" mat-button
+                  (click)="updateSetting()">
+                  <mat-icon><i class="ti-save-alt"></i></mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>

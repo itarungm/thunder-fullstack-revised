@@ -1,0 +1,29 @@
+<!-- <div class="container-scroller"> -->
+<!-- partial:partials/_navbar.html -->
+<thunder-top-navbar (navbarChanged)="onNavbarChangeStatus($event)"></thunder-top-navbar>
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_settings-panel.html -->
+  <!-- <thunder-right-sidebar></thunder-right-sidebar> -->
+  <!-- partial -->
+  <!-- partial:partials/_sidebar.html -->
+  <thunder-primary-left-navbar></thunder-primary-left-navbar>
+  <!-- partial -->
+  <div class="main-panel" [ngClass]="isNavbarOpen?'sideBarOpened':'sideBarClosed'">
+    <div class="container-scroller">
+<thunder-notification-header *ngIf="!userDetails.isEmailVerified" [uploadCount]="userDetails.maxFileUploadCount"></thunder-notification-header>
+
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <thunder-footer [isNavbarOpen]="isNavbarOpen"></thunder-footer>
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+<!-- </div> -->

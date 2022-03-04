@@ -1,0 +1,44 @@
+
+  
+  .custom-dropzone {
+      height: 12rem;
+      background: lighten(#4b49ac, 10%);
+      color: #fff;
+      border: 2px solid #4b49ac;
+      border-radius: 10px;
+      font-size: 20px;
+  }
+
+  .custom-dropzone:hover{
+    background: rgba($color: #2f1ae9, $alpha: 0.5);
+
+  }
+
+  .ti-bolt-alt{
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #2f1ae9;
+      padding: 0.1rem;
+    //   padding-top: 1rem;
+      border-radius: 50%;
+      border: 1px solid #2f1ae9;
+  }
+
+
+  
+
+   .file-preview{
+     border-radius: 100%;
+     height: 17rem;
+     width: 17rem;
+     overflow: hidden;
+     img{
+      //  height: 100%;
+      width: 100%;
+      border-radius: 100%;
+     }
+   }
+
+
+   

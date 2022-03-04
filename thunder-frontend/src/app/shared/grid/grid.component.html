@@ -1,0 +1,78 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let header of gridHeaders" [ngClass]="header.class">
+                    {{header?.title}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of gridData; let i=index">
+                <td class="py-1">
+                    <thunder-file-profile [type]="file.filetype"></thunder-file-profile>
+                </td>
+                <td>
+                    {{file.filename}}
+                </td>
+                <td class="text-center">
+                    <div class="switch text-center">
+                        <input id="toggle-btn{{i}}" class="toggle" type="checkbox" value="file.ispasswordprotected"
+                            [(ngModel)]="checkedStatus[i]" (ngModelChange)="openPasswordChangeDialog(i)">
+                        <label #tooltip="matTooltip" matTooltip="Enable/Disable File Protection"
+                            for="toggle-btn{{i}}"></label>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <span class="pr-4 cursor-pointer text-red" #tooltip="matTooltip" matTooltip="Delete File"
+                        (click)="onDeleteConfirmation(file)"><i class="ti-trash mr-1"></i></span>
+                    <span *ngIf="!file.linkGenerated" class="cursor-pointer" #tooltip="matTooltip"
+                        matTooltip="Generate Link" (click)="onLinkGenerate(file)"><i
+                            class="ti-arrow-top-right pr-1"></i></span>
+                 
+                        <span class="cursor-pointer" #tooltip="matTooltip" *ngIf="file.linkGenerated"
+                            matTooltip="Copy Link" (click)="copyLink(file.shareableLink)"><i
+                                class="ti-layers pr-1"></i></span>
+                 
+                </td>
+            </tr>
+            <tr class="text-center" *ngIf="!gridData.length && !loader">
+                <td colspan="4">No Files Added !</td>
+            </tr>
+            <tr class="text-center m-5" *ngIf="loader">
+                <td colspan="4">
+                    <thunder-brand-loader></thunder-brand-loader>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #passwordBox>
+    <h5 mat-dialog-title>Set Password</h5>
+    <form (ngSubmit)="changePassword()">
+
+        <div mat-dialog-content>
+            <mat-form-field>
+                <input matInput [formControl]="password">
+                <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button [disabled]="password.invalid" type="submit">Ok</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #confirmBox>
+    <form (ngSubmit)="onFileDelete()">
+        <div mat-dialog-content>
+            Are you sure, you want to delete this file ?
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button type="submit">Delete</button>
+        </div>
+    </form>
+</ng-template>

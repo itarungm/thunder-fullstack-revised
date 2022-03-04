@@ -1,0 +1,31 @@
+<section class="m-0 p-0">
+<div class="outer-div m-0 p-0">
+	<div class="inner-div">
+		<div class="front">
+			<div class="front__bkg-photo"></div>
+			<div class="front__face-photo"><img src="https://ui-avatars.com/api/?name={{name}}&background=random&size=120" alt="" srcset=""></div>
+			<div class="front__text">
+				<h3 class="front__text-header">{{name}}</h3>
+				<p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>India</p>
+
+				<!-- <span class="front__text-hover">Hover For Details</span> -->
+			</div>
+		</div>
+		<div class="back text-white">
+            
+			<div class="social-media-wrapper p-2">
+                <ng-container *ngIf="quote">
+                    <p>{{quote.content}}</p>
+                    <p class="text-right">- {{quote.author}}</p>
+                </ng-container>
+                <button class="btn btn-danger mt-4" (click)="callRandomQuote()">Refresh</button>
+				<!-- <a href="https://codepen.io/alexpg96" target="_blank" class="social-icon"><i class="fab fa-codepen" aria-hidden="true"></i></a>
+				<a href="https://github.com/AlexPG96" target="_blank" class="social-icon"><i class="fab fa-github" aria-hidden="true"></i></a>
+				<a href="https://apgonzalez.com" target="_blank" class="social-icon"><i class="fas fa-globe" aria-hidden="true"></i></a>
+				<a href="https://apgonzalez.com" class="social-icon"><i class="fab fa-instagram" aria-hidden="true"></i></a> -->
+			</div> 
+		</div>
+
+	</div>
+</div>
+</section>

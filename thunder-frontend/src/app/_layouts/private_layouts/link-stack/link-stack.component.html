@@ -1,0 +1,27 @@
+<section class="input-section">
+    <header>
+        <h1> Link Something </h1>
+    </header>
+    <section class="container">
+        <div class="form-container">
+            <form (ngSubmit)="onCategorySubmit()">
+                <input type="text" [formControl]="categoryControl" class="todo-input" placeholder="Link Category.." />
+
+                <button class="todo-button" type="submit">
+                    <i class="ti-plus"></i>
+                </button>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center">
+          <mat-error *ngIf="categoryControl.touched && categoryControl.dirty && categoryControl.errors?.required">Category is required</mat-error>
+        </div>
+
+        <div class="todo-container">
+            <ul class="todoList"></ul>
+        </div>
+    </section>
+</section>
+
+<section class="link-section">
+   <thunder-link-stack-category [categories]="allCategories" [rootId]="rootId" (updateDeleteEmitter)="onUpdateDelete($event)"></thunder-link-stack-category>
+</section>

@@ -1,0 +1,55 @@
+
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pt-15{
+    padding-top: 15px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-track
+{
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	// background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	// background-image: -webkit-gradient(linear,
+	// 								   left bottom,
+	// 								   left top,
+	// 								   color-stop(0.44, rgb(122,153,217)),
+	// 								   color-stop(0.72, rgb(73,125,189)),
+	// 								   color-stop(0.86, rgb(28,58,148)));
+    background-color: #e7e7e7;
+}
+
+.visible{
+	display: block;
+}
+
+.hidden{
+	display: none;
+}
+
+.mt-10{
+	margin-top: 5rem;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

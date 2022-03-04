@@ -1,0 +1,188 @@
+
+
+/* variables */
+
+$primaryColor: #6d28d9;
+$secondaryColor: #ede9fe;
+$mainWhite: #fff;
+$mainBlack: #222;
+$mainGrey: #7c7c7c;
+$mainSpacing: 0.1rem;
+$mainTransition: all 0.3s linear;
+$mainRed: #db2777;
+$bodyColor: #9d3eeb2c;
+.input-section{
+/* reset css */
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "iranYekan";
+list-style: none;
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+flex-direction: column;
+background-color: $bodyColor;
+
+
+
+header{
+height:20vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.container{
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+}
+.form-container{
+display: flex;
+justify-content: center;
+
+}
+form{
+width: 25rem;
+background-color: $mainWhite;
+display: flex;
+justify-content: space-between;
+}
+form input{
+flex: 1;
+}
+form input, form button{
+border: none;
+outline: none;
+background-color: $mainWhite;
+font-size: 1rem;
+padding: .5rem;
+}
+form button{
+color: $primaryColor;
+cursor: pointer;
+transition: all .3s ease-in-out;
+}
+form button:hover{
+background-color: $primaryColor;
+color: $mainWhite;
+}
+.todo-container{
+width: 25rem;
+}
+.todo{
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: .3rem 0;
+transition: all .3s ease-in-out;
+background-color: $secondaryColor;
+}
+.todo li{
+flex: 1;
+color: $primaryColor;
+font-weight: bold;
+margin-left: .5rem;
+}
+.todo span{
+display: block;
+font-size: 1rem;
+padding: .5rem;
+cursor: pointer;
+}
+.fa-check-square{
+color: $primaryColor;
+}
+.fa-trash-alt{
+color: $mainRed;
+}
+.completed{
+text-decoration: line-through;
+opacity: .5;
+}
+select{
+appearance: none;
+border: none;
+outline: none;
+padding: 1rem;
+width: 100%;
+color: $primaryColor;
+}
+.select{
+margin-left: 1rem;
+background-color: $mainWhite;
+cursor: pointer;
+width: 10rem;
+font-weight: bold;
+position: relative;
+}
+.select::after{
+content: "\25bc";
+position: absolute;
+top: 0;
+right: 0;
+padding: 1rem;
+color: $primaryColor;
+pointer-events: none;
+}
+}
+
+
+
+.link-section{
+    font-family: "Work Sans", sans-serif;
+    // background-color: $bodyColor;
+    box-sizing: border-box;
+
+    form{
+        overflow-y: scroll;
+        margin: 50px auto;
+        width: 500px;
+    height: 500px;
+
+        background-color: $bodyColor;
+        padding: 15px;
+        padding-top: 0;
+        margin-top: 10px;
+        position: relative;
+    }
+ 
+    form > div{
+        margin: 6px;
+        background: #f9f9f9;
+        padding: 20px;
+    }
+    form input[type="checkbox"]{
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    form label{
+        position: relative;
+        margin-left: 20px;
+    }
+    form label::before{
+        content: "";
+        position: absolute;
+        border: 1px solid #ddd;
+        width: 17px;
+        height: 17px;
+        left: -30px;
+        background-color: white;
+        border-radius: 3px;
+    }
+    form input[type="checkbox"]:checked + label:after{
+        content: "";
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        background-color: #009688;
+        left: -26px;
+        top: 4px;
+        border-radius: 2px;
+        transition: .5s;
+    }
+    form input[type="checkbox"]:checked + label{
+        text-decoration: line-through;
+    }
+}

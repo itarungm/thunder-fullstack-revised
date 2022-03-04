@@ -1,0 +1,20 @@
+<mat-card class="m-0">
+    <div class="d-flex justify-content-between">
+        <p mat-dialog-title> <mat-icon>link</mat-icon> {{addMode?'Add':'Update'}} Link</p>
+        <mat-icon class="cursor-pointer" mat-dialog-close>close</mat-icon>
+    </div>
+<div mat-dialog-content class="d-flex">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Link</mat-label>
+    <input matInput [formControl]="linkControl">
+    <mat-error *ngIf="linkControl.touched && linkControl.errors?.required">Link is required</mat-error>
+    <mat-error *ngIf="linkControl.touched && linkControl.errors?.invalidUrl">URL is Invalid</mat-error>
+  </mat-form-field>
+</div> 
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="onLinkAddUpdate()"
+             cdkFocusInitial>{{addMode?'Add':'Update'}}</button>
+</div>
+</mat-card>

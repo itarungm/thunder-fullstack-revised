@@ -1,0 +1,14 @@
+img{
+    animation-name: loader;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loader {
+    from {
+        background-color: rgba(0, 60, 255,0.5);
+    }
+    to {
+        background-color: rgba(89, 0, 255, 0.74);
+    }
+  }
