@@ -128,10 +128,22 @@ const createSubcategory = async (req, res, next) => {
           }
         );
       } else {
-        return res.json({
-          success: false,
-          message: "Failed to Fetch Link",
-        });
+        const data = await processWhileFailedToFetch(req.body.link)
+
+        await LinkStore.updateOne(
+          { email: req.body.email, "categoryList._id": req.body.categoryId },
+          { $push: { "categoryList.$.subcategory": data } }).then(()=>{
+            return res.json({
+              success: true,
+              message: "Link Created Successfully",
+            });
+          }).catch((err) => {
+              return res.json({
+                success: false,
+                message: "Failed to Fetch Link",
+              });
+          }
+        );
       }
     })
     .catch((err) => {
@@ -288,6 +300,23 @@ function responseToHtmlParser(response, link){
             }
           }
         }
+
+        return data;
+}
+
+function processWhileFailedToFetch(link){
+  let hostUrl = '';
+  try{
+    hostUrl = new URL(link).host;
+  }catch{
+
+  }
+        const data = {
+          title: '',
+          iconUrl: "",
+          link,
+          hostUrl
+        };
 
         return data;
 }
