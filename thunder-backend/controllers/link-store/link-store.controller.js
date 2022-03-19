@@ -140,17 +140,29 @@ const createSubcategory = async (req, res, next) => {
           }).catch((err) => {
               return res.json({
                 success: false,
-                message: "Failed to Fetch Link",
+                message: "Failed to Fetch Link!",
               });
           }
         );
       }
     })
-    .catch((err) => {
-      return res.json({
-        success: false,
-        message: "Failed to Fetch Link",
-      });
+    .catch(async (err) => {
+      const data = await processWhileFailedToFetch(req.body.link)
+
+       await LinkStore.updateOne(
+        { email: req.body.email, "categoryList._id": req.body.categoryId },
+        { $push: { "categoryList.$.subcategory": data } }).then(()=>{
+          return res.json({
+            success: true,
+            message: "Link Created Successfully",
+          });
+        }).catch((err) => {
+            return res.json({
+              success: false,
+              message: "Failed to Fetch Link!",
+            });
+        }
+      );
     });
 };
 
